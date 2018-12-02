@@ -18,7 +18,6 @@ class RecipesList extends React.Component {
                             </li>
                         )
                     }
-
                     return false;
                 })}
             </ul>

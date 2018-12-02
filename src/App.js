@@ -5,6 +5,7 @@ import './App.css';
 import RecipesListContainer from './components/RecipesListContainer';
 import PageNotFound from './components/PageNotFound';
 import RecipesFormContainer from './components/RecipeFormContainer';
+import RecipeDetail from './components/RecipeDetail';
 
 class App extends Component {
     render() {
@@ -13,6 +14,7 @@ class App extends Component {
                 <Link to="/add-recipe-form">Form</Link>
                 <Switch>
                     <Route exact path="/" component={RecipesListContainer} />
+                    <Route exact path="/recipe/:id" component={RecipeDetail} />
                     <Route path="/add-recipe-form" component={RecipesFormContainer} />
                     <Route component={PageNotFound} />
                 </Switch>
