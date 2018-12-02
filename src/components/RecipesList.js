@@ -1,10 +1,10 @@
 import React from 'react';
+import RecipeCard from './RecipeCard';
 
 class RecipesList extends React.Component {
 
     componentDidMount() {
         this.props.fetchRecipes();
-        console.log(this.props);
     }
 
     render() {
@@ -14,13 +14,12 @@ class RecipesList extends React.Component {
                     if (recipe) {
                         return ( 
                             <li key={recipe._id}>
-                                <div>{recipe.name}</div>
-                                <div>{recipe.subject}</div>
-                                <div>{recipe.email}</div>
-                                <div>{recipe.message}</div>
+                                <RecipeCard recipe={recipe} />
                             </li>
                         )
                     }
+
+                    return false;
                 })}
             </ul>
         )
