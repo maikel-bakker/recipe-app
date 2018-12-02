@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import { Provider } from 'react-redux'
-import store from './store';
+import { Switch, Route, Link } from 'react-router-dom';
 import './App.css';
+
 import RecipesListContainer from './components/RecipesListContainer';
+import PageNotFound from './components/PageNotFound';
+import RecipesFormContainer from './components/RecipeFormContainer';
 
 class App extends Component {
     render() {
         return (
-            <Provider store={store}>
-                <div className="App">
-                    <RecipesListContainer/>
-                </div>
-            </Provider>
-            
+            <div className="App">
+                <Link to="/add-recipe-form">Form</Link>
+                <Switch>
+                    <Route exact path="/" component={RecipesListContainer} />
+                    <Route path="/add-recipe-form" component={RecipesFormContainer} />
+                    <Route component={PageNotFound} />
+                </Switch>
+            </div>
         );
     }
 }
