@@ -494,6 +494,12 @@ module.exports = {
         new RegExp('/[^/]+\\.[^/]+$'),
       ],
     }),
+    // new WorkboxWebpackPlugin.InjectManifest({
+    //     swSrc: './src/sw.js',
+    //     swDest: 'service-worker.js',
+    //     importWorkboxFrom: 'cdn',
+    //     exclude: [/\.map$/, /^(?:asset-)manifest.*\.js(?:on)?$/],
+    // }),
     // TypeScript type checking
     fs.existsSync(paths.appTsConfig) &&
       new ForkTsCheckerWebpackPlugin({
