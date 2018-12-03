@@ -1,5 +1,5 @@
-import { addRecipe } from '../actions/recipesActions';
-import { fetchIngredients } from '../actions/ingredientActions';
+import { addRecipe } from '../../actions/recipesActions';
+import { fetchIngredients } from '../../actions/ingredientActions';
 import { connect } from 'react-redux'
 import RecipeForm from './RecipeForm';
 
