@@ -4,15 +4,11 @@ import IngredientInput from './IngredientInput';
 class RecipeForm extends React.Component {
     emptyIngredientAmount = {
         ingredientId: '',
-        amount: ''
-    };
-
-    emptyIngredient = {
-        _id: ''
-    };
+        amount: 0,
+        amountUnit: ''
+    }
 
     state = {
-        ingredients: [this.emptyIngredient],
         ingredientAmounts: [this.emptyIngredientAmount],
         steps: ["First step"],
     }
@@ -36,38 +32,14 @@ class RecipeForm extends React.Component {
         event.preventDefault();
 
         this.setState(prevState => ({
-            ingredients: [...prevState.ingredients, this.emptyIngredient],
             ingredientAmounts: [...prevState.ingredientAmounts, this.emptyIngredientAmount]
         }))
     }
 
-    handleIngredientInputChange(event) {
-        const key = event.target.getAttribute('data-index');
-        const ingredientId = event.target.value;
-        const amount = event.target.nextSibling.value;
-        
-        //TODO: merge setIngredient and setIngredientAmount into one method
-        this.setIngredient(key, ingredientId);
-        this.setIngredientAmount(key, ingredientId, amount);
-    }
-
-    setIngredient(key, ingredientId) {
-        const newIngredients = this.state.ingredients;
-
-        newIngredients[key]._id = ingredientId;
-
-        this.setState({
-            ingredients: newIngredients
-        });
-    }
-
-    setIngredientAmount(key, ingredientId, amount) {
+    setIngredientAmount(key, inputName, inputValue) {
         const newIngredientAmounts = this.state.ingredientAmounts;
 
-        newIngredientAmounts[key] = {
-            ingredientId: ingredientId,
-            amount: amount
-        }
+        newIngredientAmounts[key] = Object.assign({}, newIngredientAmounts[key], { [inputName]: inputValue });
         
         this.setState({
             ingredientAmounts: newIngredientAmounts
@@ -76,10 +48,12 @@ class RecipeForm extends React.Component {
 
     handleIngredientAmountInputChange(event) {
         const element = event.target;
-        const ingredientInput = element.previousSibling;
         const key = element.getAttribute('data-index');
 
-        this.setIngredientAmount(key, ingredientInput.value, element.value)
+        console.log(key);
+        
+
+        this.setIngredientAmount(key, element.name, element.value)
     }
 
     addStep(event) {
@@ -135,14 +109,12 @@ class RecipeForm extends React.Component {
             
                 <button onClick={this.addIngredientAndAmount.bind(this)}>Add Ingredient</button>
 
-                {this.state.ingredients.map((input, i) => {
+                {this.state.ingredientAmounts.map((input, i) => {
                     return <IngredientInput 
                             key={i}
                             index={i}
-                            name={`ingredients[${i}]`}
                             ingredients={this.props.ingredients} 
-                            onChange={this.handleIngredientInputChange.bind(this)}
-                            amountOnChange={this.handleIngredientAmountInputChange.bind(this)}
+                            onChange={this.handleIngredientAmountInputChange.bind(this)}
                            />
                 })}
                 

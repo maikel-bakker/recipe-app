@@ -18,7 +18,7 @@ const RecipeDetail = ({ location }) => {
                 Ingredients
                 <ul>
                     {recipe.ingredientAmounts.map(ingredientAmount => {
-                        return <li>{ingredientAmount.ingredient.name} : {ingredientAmount.amount}</li>
+                        return <li>{ingredientAmount.ingredient.name} : {ingredientAmount.amount} {ingredientAmount.amountUnit}</li>
                     })}
                 </ul>
             </div>
