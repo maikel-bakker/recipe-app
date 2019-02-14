@@ -1,18 +1,9 @@
+import { checkIfKeyExists } from "../helpers/checkIfKeyExists";
+
 const initialState = {
     recipes: [],
     fetching: false,
     fetched: false
-}
-
-const checkIfKeyExists = (key, arr) => {
-    if (arr.length) {
-        arr.forEach(el => {
-            return (el._id === key);
-        })
-    } else {
-        return true;   
-    }
-
 }
 
 export default function recipes(state = initialState, action) {

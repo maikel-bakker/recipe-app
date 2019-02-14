@@ -7,19 +7,19 @@ export const fetchRecipes = () => {
         });
 
         RecipeService.getRecipes()
-        .then(data => {
-            dispatch({
-                type: 'FETCH_RECIPES_FULFILLED',
-                payload: data
-            })
+            .then(data => {
+                dispatch({
+                    type: 'FETCH_RECIPES_FULFILLED',
+                    payload: data
+                })
 
-        })
-        .catch(error => {
-            dispatch({
-                type: 'FETCH_RECIPES_REJECTED',
-                payload: error
             })
-        });
+            .catch(error => {
+                dispatch({
+                    type: 'FETCH_RECIPES_REJECTED',
+                    payload: error
+                })
+            });
     }
 }
 

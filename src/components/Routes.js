@@ -7,6 +7,7 @@ import RecipesFormContainer from './recipe/RecipeFormContainer';
 import RecipeDetail from './recipe/RecipeDetail';
 import ScheduleContainer from './schedule/ScheduleContainer';
 import ScheduleList from './schedule/ScheduleList';
+import { IngredientListContainer } from './ingredient/IngredientListContainer';
 
 export const Routes = () => {
     return (
@@ -16,6 +17,7 @@ export const Routes = () => {
             <Route path="/add-recipe-form" component={RecipesFormContainer} />
             <Route path="/schedule/:weekNumber" component={ScheduleContainer} />
             <Route path="/schedule" component={ScheduleList} />
+            <Route path="/ingredient-list/:weekNumber" component={IngredientListContainer} />
             <Route component={PageNotFound} />
         </Switch>
     )
