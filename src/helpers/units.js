@@ -15,6 +15,10 @@ export const getUnits = () => {
         {
             fullName: 'kilograms',
             abbreviation: 'kg'
+        },
+        {
+            fullName: "stuks",
+            abbreviation: "stuks"
         }
     ]
 }
