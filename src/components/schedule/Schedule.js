@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { merge } from 'lodash';
+
 import scheduleService from '../../services/scheduleService';
 import ScheduleDay from './ScheduleDay';
-import { merge } from 'lodash';
 
 export class Schedule extends React.Component {
     state = {
@@ -58,7 +60,7 @@ export class Schedule extends React.Component {
         
         return (
             <div>
-                <h1>Schedule for week {this.state.weekNumber}</h1>
+                <h1>Schedule for week {this.state.currentSchedule.weekNumber}</h1>
 
                 {this.state.currentSchedule.weekDays.map((weekDay, i) => {
                     return <ScheduleDay key={i} 
@@ -69,6 +71,10 @@ export class Schedule extends React.Component {
                 })}
 
                 <button onClick={this.saveSchedule.bind(this)}>Save schedule</button>
+                
+                <Link to={{ pathname: `/ingredient-list/${this.state.currentSchedule.weekNumber}` }}>
+                    Get ingredient list
+                </Link>
             </div>
         )
         
