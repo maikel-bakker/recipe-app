@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 const ScheduleDay = ({ day, recipes, value, onChange }) => {    
     return (
@@ -12,6 +13,13 @@ const ScheduleDay = ({ day, recipes, value, onChange }) => {
             </select>
         </div>
     )
-}   
+}
+
+ScheduleDay.propTypes = {
+    day: PropTypes.string,
+    recipes: PropTypes.array,
+    value: PropTypes.string,
+    onChange: PropTypes.func
+}
 
 export default ScheduleDay;

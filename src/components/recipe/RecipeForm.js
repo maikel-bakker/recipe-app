@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import IngredientInput from './IngredientInput';
 
 class RecipeForm extends React.Component {
@@ -135,3 +137,10 @@ class RecipeForm extends React.Component {
 }
 
 export default RecipeForm;
+
+RecipeForm.propTypes = {
+    getIngredients: PropTypes.func,
+    addIngredient: PropTypes.func,
+    addRecipe: PropTypes.func,
+    ingredients: PropTypes.array
+}

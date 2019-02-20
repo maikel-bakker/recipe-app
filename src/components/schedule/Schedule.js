@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { merge } from 'lodash';
 
 import scheduleService from '../../services/scheduleService';
@@ -56,8 +57,6 @@ export class Schedule extends React.Component {
     }
 
     render() {
-        console.log(this.props.match.params.weekNumber);
-        
         return (
             <div>
                 <h1>Schedule for week {this.state.currentSchedule.weekNumber}</h1>
@@ -79,4 +78,11 @@ export class Schedule extends React.Component {
         )
         
     }
+}
+
+Schedule.propTypes = {
+    match: PropTypes.object,
+    recipes: PropTypes.recipes,
+    fetchRecipes: PropTypes.func,
+    addSchedule: PropTypes.func
 }

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import RecipeCard from './RecipeCard';
 
 class RecipesList extends React.Component {
@@ -26,3 +28,8 @@ class RecipesList extends React.Component {
 }
 
 export default RecipesList;
+
+RecipesList.propTypes = {
+    fetchRecipes: PropTypes.func,
+    recipes: PropTypes.arrayOf(PropTypes.object)
+}
