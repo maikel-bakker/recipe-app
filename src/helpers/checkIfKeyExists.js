@@ -2,8 +2,8 @@ export const checkIfKeyExists = (key, arr) => {
     if (arr.length) {
         arr.forEach(el => {
             return (el._id === key);
-        })
-    } else {
-        return true;   
+        });
     }
-}
+
+    return true;
+};

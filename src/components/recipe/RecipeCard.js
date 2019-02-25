@@ -19,7 +19,7 @@ const RecipeCard = ({ recipe }) => {
             </article>
         </Link>
     );
-}
+};
 
 export default RecipeCard;
 
@@ -29,6 +29,6 @@ RecipeCard.propTypes = {
         title: PropTypes.string,
         description: PropTypes.string,
         serves: PropTypes.number,
-        cookTime: PropTypes.cookTime,
+        cookTime: PropTypes.cookTime
     })
-}
+};

@@ -1,9 +1,9 @@
 class ScheduleService {
     async getSchedule(weekNumber) {
-        let res = await fetch('http://localhost:4000/get-schedule/' + weekNumber);
-        
+        let res = await fetch(`http://localhost:4000/get-schedule/'${weekNumber}`);
+
         if (res.ok) {
-            return await res.json()  
+            return await res.json();
         }
         throw new Error(res.statusText);
     }
@@ -16,10 +16,13 @@ class ScheduleService {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(schedule)
-            
+
         });
-        
-        if (res.ok) return await res.json()
+
+        if (res.ok) {
+            return await res.json();
+        }
+
         throw new Error(res.statusText);
     }
 }

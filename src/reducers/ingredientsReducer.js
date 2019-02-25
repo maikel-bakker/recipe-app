@@ -1,41 +1,35 @@
+import { checkIfKeyExists } from '../helpers/checkIfKeyExists';
+
 const initialState = {
     ingredients: [],
     fetching: false,
     fetched: false
-}
+};
 
-const checkIfKeyExists = (key, arr) => {
-    if (arr.length) {
-        arr.forEach(el => {
-            return (el._id === key);
-        })
-    } else {
-        return true;   
-    }
-
-}
-
-export default function ingredients(state = initialState, action) {
+export const ingredientsReducer = (state = initialState, action) => {
     if (typeof state === 'undefined') {
         return initialState;
     }
+
     switch (action.type) {
-        case "FETCH_INGREDIENTS_PENDING": {
+        case 'FETCH_INGREDIENTS_PENDING': {
             return {
                 ...state,
                 fetching: true,
                 fetched: false
-            }
+            };
         }
-        case "FETCH_INGREDIENTS_REJECTED": {
+
+        case 'FETCH_INGREDIENTS_REJECTED': {
             return {
                 ...state,
                 fetching: false,
                 fetched: false,
                 error: action.payload
-            }
+            };
         }
-        case "FETCH_INGREDIENTS_FULFILLED": {
+
+        case 'FETCH_INGREDIENTS_FULFILLED': {
 
             let newIngredients = action.payload.filter(element => {
                 return checkIfKeyExists(element._id, state.ingredients);
@@ -46,34 +40,36 @@ export default function ingredients(state = initialState, action) {
                 fetching: false,
                 fetched: true,
                 ingredients: [...state.ingredients, ...newIngredients]
-            }
+            };
 
             return newState;
         }
 
-        case "ADD_INGREDIENT_PENDING": {
+        case 'ADD_INGREDIENT_PENDING': {
             return {
                 ...state,
                 fetching: true,
                 fetched: false
-            }
+            };
         }
-        case "ADD_INGREDIENT_REJECTED": {
+
+        case 'ADD_INGREDIENT_REJECTED': {
             return {
                 ...state,
                 fetching: false,
                 fetched: false,
                 error: action.payload
-            }
+            };
         }
-        case "ADD_INGREDIENT_FULFILLED": {
+
+        case 'ADD_INGREDIENT_FULFILLED': {
 
             const newState = {
                 ...state,
                 fetching: false,
                 fetched: true,
                 ingredients: [...state.ingredients, action.payload]
-            }
+            };
 
             return newState;
         }
@@ -82,4 +78,4 @@ export default function ingredients(state = initialState, action) {
             return state;
         }
     }
-}
+};

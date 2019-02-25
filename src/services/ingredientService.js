@@ -11,7 +11,7 @@ class IngredientService {
                 }
             }
             `
-        }
+        };
 
         let data = await fetch('/graphql', {
             method: 'POST',

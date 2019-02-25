@@ -20,5 +20,5 @@ export const Routes = () => {
             <Route path="/ingredient-list/:weekNumber" component={IngredientListContainer} />
             <Route component={PageNotFound} />
         </Switch>
-    )
-}
+    );
+};

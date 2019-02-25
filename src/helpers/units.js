@@ -17,8 +17,8 @@ export const getUnits = () => {
             abbreviation: 'kg'
         },
         {
-            fullName: "stuks",
-            abbreviation: "stuks"
+            fullName: 'stuks',
+            abbreviation: 'stuks'
         }
-    ]
-}
+    ];
+};

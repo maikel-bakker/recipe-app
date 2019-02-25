@@ -11,18 +11,22 @@ class RecipeForm extends React.Component {
     }
 
     state = {
-        ingredientAmounts: [this.emptyIngredientAmount],
-        steps: ["First step"],
+        steps: ['First step']
     }
-    
+
+    constructor() {
+        super();
+        this.state.ingredientAmounts = [this.emptyIngredientAmount];
+    }
+
     componentDidMount() {
         this.props.getIngredients();
     }
 
     handleInputChange(event) {
         this.setState({
-            [event.target.name]: event.target.value 
-        })        
+            [event.target.name]: event.target.value
+        });
     }
 
     addRecipe(event) {
@@ -35,14 +39,14 @@ class RecipeForm extends React.Component {
 
         this.setState(prevState => ({
             ingredientAmounts: [...prevState.ingredientAmounts, this.emptyIngredientAmount]
-        }))
+        }));
     }
 
     setIngredientAmount(key, inputName, inputValue) {
         const newIngredientAmounts = this.state.ingredientAmounts;
 
         newIngredientAmounts[key] = Object.assign({}, newIngredientAmounts[key], { [inputName]: inputValue });
-        
+
         this.setState({
             ingredientAmounts: newIngredientAmounts
         });
@@ -53,17 +57,17 @@ class RecipeForm extends React.Component {
         const key = element.getAttribute('data-index');
 
         console.log(key);
-        
 
-        this.setIngredientAmount(key, element.name, element.value)
+
+        this.setIngredientAmount(key, element.name, element.value);
     }
 
     addStep(event) {
         event.preventDefault();
 
         this.setState(prevState => ({
-            steps: [...prevState.steps, ""]
-        }))
+            steps: [...prevState.steps, '']
+        }));
     }
 
     handleStepInputChange(event) {
@@ -75,12 +79,12 @@ class RecipeForm extends React.Component {
 
         this.setState({
             steps: newSteps
-        })
+        });
     }
 
     render() {
         return (
-            <form id="form" onSubmit={this.addRecipe.bind(this)}>
+            <form onSubmit={this.addRecipe.bind(this)}>
                 <div>
                     <label>
                         Title
@@ -108,22 +112,25 @@ class RecipeForm extends React.Component {
                     </label>
                     <input type="number" name="cookTime" onChange={this.handleInputChange.bind(this)} />
                 </div>
-            
+
                 <button onClick={this.addIngredientAndAmount.bind(this)}>Add Ingredient</button>
 
                 {this.state.ingredientAmounts.map((input, i) => {
-                    return <IngredientInput 
+                    return (
+                        <IngredientInput
                             key={i}
                             index={i}
-                            ingredients={this.props.ingredients} 
+                            ingredients={this.props.ingredients}
                             onChange={this.handleIngredientAmountInputChange.bind(this)}
-                           />
+                        />
+                    );
+
                 })}
-                
+
                 <button onClick={this.addStep.bind(this)}>Add Step</button>
 
                 {this.state.steps.map((step, i) => {
-                    return <textarea key={i} data-index={i} defaultValue={step} onChange={this.handleStepInputChange.bind(this)}></textarea>
+                    return <textarea key={i} data-index={i} defaultValue={step} onChange={this.handleStepInputChange.bind(this)}></textarea>;
                 })}
 
                 <hr/>
@@ -132,7 +139,7 @@ class RecipeForm extends React.Component {
                     Add Recipe
                 </button>
             </form>
-        )
+        );
     }
 }
 
@@ -143,4 +150,4 @@ RecipeForm.propTypes = {
     addIngredient: PropTypes.func,
     addRecipe: PropTypes.func,
     ingredients: PropTypes.array
-}
+};

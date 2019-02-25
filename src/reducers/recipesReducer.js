@@ -1,32 +1,35 @@
-import { checkIfKeyExists } from "../helpers/checkIfKeyExists";
+import { checkIfKeyExists } from '../helpers/checkIfKeyExists';
 
 const initialState = {
     recipes: [],
     fetching: false,
     fetched: false
-}
+};
 
-export default function recipes(state = initialState, action) {
+export const recipesReducer = (state = initialState, action) => {
     if (typeof state === 'undefined') {
         return initialState;
     }
+
     switch (action.type) {
-        case "FETCH_RECIPES_PENDING": {
+        case 'FETCH_RECIPES_PENDING': {
             return {
                 ...state,
                 fetching: true,
                 fetched: false
-            }
+            };
         }
-        case "FETCH_RECIPES_REJECTED": {
+
+        case 'FETCH_RECIPES_REJECTED': {
             return {
                 ...state,
                 fetching: false,
                 fetched: false,
                 error: action.payload
-            }
+            };
         }
-        case "FETCH_RECIPES_FULFILLED": {
+
+        case 'FETCH_RECIPES_FULFILLED': {
 
             let newRecipes = action.payload.filter(element => {
                 return checkIfKeyExists(element._id, state.recipes);
@@ -37,34 +40,36 @@ export default function recipes(state = initialState, action) {
                 fetching: false,
                 fetched: true,
                 recipes: [...state.recipes, ...newRecipes]
-            }
+            };
 
             return newState;
         }
 
-        case "ADD_RECIPE_PENDING": {
+        case 'ADD_RECIPE_PENDING': {
             return {
                 ...state,
                 fetching: true,
                 fetched: false
-            }
+            };
         }
-        case "ADD_RECIPE_REJECTED": {
+
+        case 'ADD_RECIPE_REJECTED': {
             return {
                 ...state,
                 fetching: false,
                 fetched: false,
                 error: action.payload
-            }
+            };
         }
-        case "ADD_RECIPE_FULFILLED": {
+
+        case 'ADD_RECIPE_FULFILLED': {
 
             const newState = {
                 ...state,
                 fetching: false,
                 fetched: true,
                 recipes: [...state.recipes, action.payload]
-            }
+            };
 
             return newState;
         }
@@ -73,4 +78,4 @@ export default function recipes(state = initialState, action) {
             return state;
         }
     }
-}
+};

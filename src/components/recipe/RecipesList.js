@@ -12,18 +12,20 @@ class RecipesList extends React.Component {
     render() {
         return (
             <ul>
-                {this.props.recipes.map((recipe) => {
+                {this.props.recipes.map(recipe => {
                     if (recipe) {
-                        return ( 
+
+                        return (
                             <li key={recipe._id}>
                                 <RecipeCard recipe={recipe} />
                             </li>
-                        )
+                        );
                     }
+
                     return false;
                 })}
             </ul>
-        )
+        );
     }
 }
 
@@ -32,4 +34,4 @@ export default RecipesList;
 RecipesList.propTypes = {
     fetchRecipes: PropTypes.func,
     recipes: PropTypes.arrayOf(PropTypes.object)
-}
+};

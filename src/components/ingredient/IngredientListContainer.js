@@ -10,15 +10,15 @@ const mapStateToProps = state => {
         currentIngredientList: state.ingredientListReducer.currentIngredientList,
         fetching: state.ingredientListReducer.fetching,
         fetched: state.ingredientListReducer.fetched
-    }
+    };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchIngredientList: (weekNumber) => {
+        fetchIngredientList: weekNumber => {
             dispatch(fetchIngredientList(weekNumber));
         }
-    }
+    };
 };
 
 export const IngredientListContainer = connect(mapStateToProps, mapDispatchToProps)(IngredientList);

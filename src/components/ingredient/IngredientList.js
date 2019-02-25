@@ -15,16 +15,16 @@ export class IngredientList extends React.Component {
                     <h1>{this.props.currentIngredientList.weekNumber}</h1>
                     <ul>
                         {ingredientAmounts.map((ingredientAmount, key) => {
-                            return <li key={key}>{ingredientAmount.ingredient.name}: {ingredientAmount.amount} {ingredientAmount.amountUnit}</li>
+                            return <li key={key}>{ingredientAmount.ingredient.name}: {ingredientAmount.amount} {ingredientAmount.amountUnit}</li>;
                         })}
                     </ul>
                 </div>
-            )
-        } else {
-            return (
-                <div>Loading...</div>
-            )
+            );
         }
+
+        return (
+            <div>Loading...</div>
+        );
     }
 }
 
@@ -40,4 +40,4 @@ IngredientList.propTypes = {
             amountUnit: PropTypes.string
         })
     }))
-}
+};

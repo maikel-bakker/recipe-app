@@ -8,5 +8,5 @@ export const Nav = () => {
             <Link to="/schedule">Schedule</Link>
             <Link to="/add-recipe-form">Form</Link>
         </React.Fragment>
-    )
-}
+    );
+};

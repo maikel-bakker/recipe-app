@@ -1,7 +1,7 @@
 import IngredientListService from '../services/ingredientListService';
 
-export const fetchIngredientList = (weekNumber) => {
-    return (dispatch) => {
+export const fetchIngredientList = weekNumber => {
+    return dispatch => {
         dispatch({
             type: 'FETCH_INGREDIENTLIST_PENDING'
         });
@@ -11,14 +11,14 @@ export const fetchIngredientList = (weekNumber) => {
                 dispatch({
                     type: 'FETCH_INGREDIENTLIST_FULFILLED',
                     payload: data
-                })
+                });
 
             })
             .catch(error => {
                 dispatch({
                     type: 'FETCH_INGREDIENTLIST_REJECTED',
                     payload: error
-                })
+                });
             });
-    }
-}
+    };
+};

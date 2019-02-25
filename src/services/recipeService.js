@@ -15,7 +15,7 @@ class RecipeService {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(recipe)
-            
+
         });
 
         let json = await data.json();

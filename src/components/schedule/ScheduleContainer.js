@@ -8,7 +8,7 @@ const mapStateToProps = state => {
         recipes: state.recipesReducer.recipes,
         schedules: state.schedulesReducer.schedules,
         currentSchedule: state.schedulesReducer.currentSchedule
-    }
+    };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -17,14 +17,14 @@ const mapDispatchToProps = dispatch => {
             dispatch(fetchRecipes());
         },
 
-        fetchSchedule: (weekNumber) => {
+        fetchSchedule: weekNumber => {
             dispatch(fetchSchedule(weekNumber));
         },
 
-        addSchedule: (schedule) => {
+        addSchedule: schedule => {
             dispatch(addSchedule(schedule));
         }
-    }
+    };
 };
 
 const ScheduleContainer = connect(mapStateToProps, mapDispatchToProps)(Schedule);

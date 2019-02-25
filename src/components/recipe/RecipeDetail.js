@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const RecipeDetail = ({ location }) => {
     const recipe = location.state.recipe;
-    
+
     return (
         <article>
             <h1>{recipe.title}</h1>
@@ -19,7 +19,7 @@ const RecipeDetail = ({ location }) => {
                 Ingredients
                 <ul>
                     {recipe.ingredientAmounts.map(ingredientAmount => {
-                        return <li key={ingredientAmount._id}>{ingredientAmount.ingredient.name} : {ingredientAmount.amount} {ingredientAmount.amountUnit}</li>
+                        return <li key={ingredientAmount._id}>{ingredientAmount.ingredient.name} : {ingredientAmount.amount} {ingredientAmount.amountUnit}</li>;
                     })}
                 </ul>
             </div>
@@ -27,16 +27,16 @@ const RecipeDetail = ({ location }) => {
                 Steps
                 <ol>
                     {recipe.steps.map((step, i) => {
-                        return <li key={i}>{step}</li>
+                        return <li key={i}>{step}</li>;
                     })}
                 </ol>
             </div>
         </article>
     );
-}
+};
 
 RecipeDetail.propTypes = {
     location: PropTypes.object
-}
+};
 
 export default RecipeDetail;
