@@ -6,10 +6,10 @@ import { IngredientList } from './IngredientList';
 
 const mapStateToProps = state => {
     return {
-        ingredientLists: state.ingredientListReducer.ingredientLists,
-        currentIngredientList: state.ingredientListReducer.currentIngredientList,
-        fetching: state.ingredientListReducer.fetching,
-        fetched: state.ingredientListReducer.fetched
+        ingredientLists: state.ingredientLists.items,
+        currentIngredientList: state.ingredientLists.currentIngredientList,
+        fetching: state.ingredientLists.fetching,
+        fetched: state.ingredientLists.fetched
     };
 };
 

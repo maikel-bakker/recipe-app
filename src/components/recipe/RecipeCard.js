@@ -25,7 +25,7 @@ export default RecipeCard;
 
 RecipeCard.propTypes = {
     recipe: PropTypes.shape({
-        _id: PropTypes.number,
+        _id: PropTypes.string,
         title: PropTypes.string,
         description: PropTypes.string,
         serves: PropTypes.number,

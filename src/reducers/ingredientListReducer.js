@@ -1,54 +1,34 @@
+import { retrieveItemPending, retrieveItemRejected } from '../helpers/defaultActionHandlers';
+import { createReducer } from '../helpers/createReducer';
+
 const initialState = {
     currentIngredientList: {},
-    ingredientLists: [],
+    items: [],
     fetching: false,
     fetched: false
 };
 
-export const ingredientListReducer = (state = initialState, action) => {
-    if (typeof state === 'undefined') {
-        return initialState;
+const findAndUpdateIngredientList = (state, action) => {
+    const foundIndex = state.items.findIndex(ingredientList => ingredientList._id === action.payload._id);
+    const newState = {
+        ...state,
+        fetching: false,
+        fetched: true,
+        currentIngredientList: action.payload
+    };
+
+    if (foundIndex === -1) {
+        newState.items = [...state.items, action.payload];
+    } else {
+        state.items[foundIndex] = action.payload;
+        newState.items = [...state.items];
     }
 
-    switch (action.type) {
-        case 'FETCH_INGREDIENTLIST_PENDING': {
-            return {
-                ...state,
-                fetching: true,
-                fetched: false
-            };
-        }
-
-        case 'FETCH_INGREDIENTLIST_REJECTED': {
-            return {
-                ...state,
-                fetching: false,
-                fetched: false,
-                error: action.payload
-            };
-        }
-
-        case 'FETCH_INGREDIENTLIST_FULFILLED': {
-            const foundIndex = state.ingredientLists.findIndex(ingredientList => ingredientList._id === action.payload._id);
-            const newState = {
-                ...state,
-                fetching: false,
-                fetched: true,
-                currentIngredientList: action.payload
-            };
-
-            if (foundIndex === -1) {
-                newState.ingredientLists = [...state.ingredientLists, action.payload];
-            } else {
-                state.ingredientLists[foundIndex] = action.payload;
-                newState.ingredientLists = [...state.ingredientLists];
-            }
-
-            return newState;
-        }
-
-        default: {
-            return state;
-        }
-    }
+    return newState;
 };
+
+export const ingredientListReducer = createReducer(initialState, {
+    FETCH_INGREDIENTLIST_PENDING: retrieveItemPending,
+    FETCH_INGREDIENTLIST_REJECTED: retrieveItemRejected,
+    FETCH_INGREDIENTLIST_FULFILLED: findAndUpdateIngredientList
+});

@@ -5,8 +5,8 @@ import { schedulesReducer } from './schedulesReducer';
 import { ingredientListReducer } from './ingredientListReducer';
 
 export default combineReducers({
-    recipesReducer,
-    ingredientsReducer,
-    schedulesReducer,
-    ingredientListReducer
+    recipes: recipesReducer,
+    ingredients: ingredientsReducer,
+    schedules: schedulesReducer,
+    ingredientLists: ingredientListReducer
 });

@@ -89,7 +89,7 @@ export class Schedule extends React.Component {
 
 Schedule.propTypes = {
     match: PropTypes.object,
-    recipes: PropTypes.recipes,
+    recipes: PropTypes.array,
     fetchRecipes: PropTypes.func,
     addSchedule: PropTypes.func
 };

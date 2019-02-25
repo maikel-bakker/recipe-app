@@ -56,9 +56,6 @@ class RecipeForm extends React.Component {
         const element = event.target;
         const key = element.getAttribute('data-index');
 
-        console.log(key);
-
-
         this.setIngredientAmount(key, element.name, element.value);
     }
 

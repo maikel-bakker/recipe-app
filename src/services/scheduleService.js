@@ -1,6 +1,6 @@
 class ScheduleService {
     async getSchedule(weekNumber) {
-        let res = await fetch(`http://localhost:4000/get-schedule/'${weekNumber}`);
+        let res = await fetch(`http://localhost:4000/get-schedule/${weekNumber}`);
 
         if (res.ok) {
             return await res.json();

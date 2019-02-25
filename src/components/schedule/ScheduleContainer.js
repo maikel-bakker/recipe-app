@@ -5,9 +5,9 @@ import { fetchSchedule, addSchedule } from '../../actions/schedulesActions';
 
 const mapStateToProps = state => {
     return {
-        recipes: state.recipesReducer.recipes,
-        schedules: state.schedulesReducer.schedules,
-        currentSchedule: state.schedulesReducer.currentSchedule
+        recipes: state.recipes.items,
+        schedules: state.schedules.items,
+        currentSchedule: state.schedules.currentSchedule
     };
 };
 

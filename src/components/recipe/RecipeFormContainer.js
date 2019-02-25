@@ -5,8 +5,8 @@ import RecipeForm from './RecipeForm';
 
 const mapStateToProps = state => {
     return {
-        recipes: state.recipesReducer.recipes,
-        ingredients: state.ingredientsReducer.ingredients
+        recipes: state.recipes.items,
+        ingredients: state.ingredients.items
     };
 };
 

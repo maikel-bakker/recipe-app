@@ -1,90 +1,38 @@
+import { createReducer } from '../helpers/createReducer';
+import { retrieveItemPending, retrieveItemRejected, updateWithNewItems } from '../helpers/defaultActionHandlers';
+
 const initialState = {
-    schedules: [],
+    items: [],
     currentSchedule: {},
     fetching: false,
     fetched: false,
     error: null
 };
 
-export const schedulesReducer = (state = initialState, action) => {
-    if (typeof state === 'undefined') {
-        return initialState;
+const addOrUpdateSchedule = (state, action) => {
+    let newSchedule = action.payload;
+    let newSchedules = state.items;
+    let index = newSchedules.findIndex(({ weekNumber }) => weekNumber === newSchedule.weekNumber);
+
+    if (index === -1) {
+        newSchedules.push(newSchedule);
+    } else {
+        newSchedules[index] = newSchedule;
     }
 
-    switch (action.type) {
-        case 'FETCH_SCHEDULE_PENDING': {
-            return {
-                ...state,
-                fetching: true,
-                fetched: false
-            };
-        }
-
-        case 'FETCH_SCHEDULE_REJECTED': {
-            return {
-                ...state,
-                fetching: false,
-                fetched: false,
-                error: action.payload
-            };
-        }
-
-        case 'FETCH_SCHEDULE_FULFILLED': {
-            let newSchedule = action.payload;
-
-            const newState = {
-                ...state,
-                fetching: false,
-                fetched: true,
-                schedules: [...state.schedules, newSchedule],
-                currentSchedule: newSchedule
-            };
-
-            return newState;
-        }
-
-        case 'ADD_SCHEDULE_PENDING': {
-            return {
-                ...state,
-                fetching: true,
-                fetched: false
-            };
-        }
-
-        case 'ADD_SCHEDULE_REJECTED': {
-            return {
-                ...state,
-                fetching: false,
-                fetched: false,
-                error: action.payload
-            };
-        }
-
-        case 'ADD_SCHEDULE_FULFILLED': {
-            let newSchedule = action.payload;
-            let newSchedules = state.schedules;
-            let index = newSchedules.findIndex(({ weekNumber }) => weekNumber === newSchedule.weekNumber);
-
-            if (index === -1) {
-                console.log(true);
-
-                newSchedules.push(newSchedule);
-            } else {
-                newSchedules[index] = newSchedule;
-            }
-
-            const newState = {
-                ...state,
-                fetching: false,
-                fetched: true,
-                schedules: newSchedules
-            };
-
-            return newState;
-        }
-
-        default: {
-            return state;
-        }
-    }
+    return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        items: newSchedules
+    };
 };
+
+export const schedulesReducer = createReducer(initialState, {
+    FETCH_SCHEDULE_PENDING: retrieveItemPending,
+    FETCH_SCHEDULE_REJECTED: retrieveItemRejected,
+    FETCH_SCHEDULE_FULFILLED: updateWithNewItems,
+    ADD_SCHEDULE_PENDING: retrieveItemPending,
+    ADD_SCHEDULE_REJECTED: retrieveItemRejected,
+    ADD_SCHEDULE_FULFILLED: addOrUpdateSchedule
+});
