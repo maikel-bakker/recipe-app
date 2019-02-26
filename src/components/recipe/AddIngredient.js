@@ -27,7 +27,7 @@ export class AddIngredient extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{ display: this.props.show ? 'block' : 'none' }}>
                 <input type="text" name="name" placeholder="Ingredient name" onChange={event => this.handleInputChange(event)} />
                 <input type="text" name="type" placeholder="Ingredient type" onChange={event => this.handleInputChange(event)} />
 
@@ -38,5 +38,6 @@ export class AddIngredient extends React.Component {
 }
 
 AddIngredient.propTypes = {
-    addIngredient: PropTypes.func
+    addIngredient: PropTypes.func,
+    show: PropTypes.bool
 };

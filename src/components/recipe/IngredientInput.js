@@ -4,11 +4,7 @@ import PropTypes from 'prop-types';
 import { getUnits } from '../../helpers/units';
 import { AddIngredientContainer } from './AddIngredientContainer';
 
-const IngredientInput = ({ index, ingredients, onChange }) => {
-
-    // const toggleIngredientContainer = () => {
-
-    // }
+const IngredientInput = ({ index, ingredients, onChange, showAddIngredient }) => {
 
     return (
         <div>
@@ -23,7 +19,7 @@ const IngredientInput = ({ index, ingredients, onChange }) => {
                     })}
                     <option value="new">New ingredient</option>
                 </select>
-                <AddIngredientContainer />
+                <AddIngredientContainer show={showAddIngredient} />
             </div>
 
             <input type="number" name="amount" placeholder="Amount Number" onChange={onChange} data-index={index}/>
@@ -44,5 +40,6 @@ IngredientInput.propTypes = {
         _id: PropTypes.string,
         name: PropTypes.string
     })),
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    showAddIngredient: PropTypes.bool
 };

@@ -11,7 +11,8 @@ class RecipeForm extends React.Component {
     }
 
     state = {
-        steps: ['First step']
+        steps: ['First step'],
+        showAddIngredient: false
     }
 
     constructor() {
@@ -56,7 +57,17 @@ class RecipeForm extends React.Component {
         const element = event.target;
         const key = element.getAttribute('data-index');
 
+        if (element.value === 'new') {
+            this.toggleAddIngredient();
+        }
+
         this.setIngredientAmount(key, element.name, element.value);
+    }
+
+    toggleAddIngredient() {
+        this.setState({
+            showAddIngredient: !this.state.showAddIngredient
+        });
     }
 
     addStep(event) {
@@ -119,6 +130,7 @@ class RecipeForm extends React.Component {
                             index={i}
                             ingredients={this.props.ingredients}
                             onChange={this.handleIngredientAmountInputChange.bind(this)}
+                            showAddIngredient={this.state.showAddIngredient}
                         />
                     );
 
