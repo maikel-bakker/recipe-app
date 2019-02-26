@@ -30,6 +30,7 @@ export class Schedule extends React.Component {
         // Prevent unnecessary fetch if recipes are already fetched in other component
         if (!this.props.recipes.length) { this.props.fetchRecipes(); }
 
+        // TODO: use redux action with promise
         scheduleService.getSchedule(this.props.match.params.weekNumber)
             .then(schedule => {
                 this.setState({
