@@ -1,4 +1,5 @@
 import { filterNewItems } from './filterNewItems';
+import { updateOrReplaceInArray } from './updateOrReplaceInArray';
 
 export const retrieveItemPending = state => {
     return {
@@ -14,6 +15,15 @@ export const retrieveItemRejected = (state, action) => {
         fetching: false,
         fetched: false,
         error: action.payload
+    };
+};
+
+export const updateWithNewItem = (state, action) => {
+    return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        items: updateOrReplaceInArray(state.items, action.payload, '_id')
     };
 };
 

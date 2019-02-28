@@ -1,5 +1,6 @@
 import { createReducer } from '../helpers/createReducer';
-import { retrieveItemPending, retrieveItemRejected, updateWithNewItems } from '../helpers/defaultActionHandlers';
+import { retrieveItemPending, retrieveItemRejected } from '../helpers/defaultActionHandlers';
+import { updateOrReplaceInArray } from '../helpers/updateOrReplaceInArray';
 
 const initialState = {
     items: [],
@@ -28,10 +29,20 @@ const addOrUpdateSchedule = (state, action) => {
     };
 };
 
+const updateWithNewSchedule = (state, action) => {
+    return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        items: updateOrReplaceInArray(state.items, action.payload, '_id'),
+        currentSchedule: action.payload
+    };
+};
+
 export const schedulesReducer = createReducer(initialState, {
     FETCH_SCHEDULE_PENDING: retrieveItemPending,
     FETCH_SCHEDULE_REJECTED: retrieveItemRejected,
-    FETCH_SCHEDULE_FULFILLED: updateWithNewItems,
+    FETCH_SCHEDULE_FULFILLED: updateWithNewSchedule,
     ADD_SCHEDULE_PENDING: retrieveItemPending,
     ADD_SCHEDULE_REJECTED: retrieveItemRejected,
     ADD_SCHEDULE_FULFILLED: addOrUpdateSchedule

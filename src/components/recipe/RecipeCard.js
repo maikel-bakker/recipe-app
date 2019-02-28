@@ -1,23 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
+import { RecipeSpecs } from './RecipeSpecs';
 
-const RecipeCard = ({ recipe }) => {
+const Card = styled(Link)`
+    display: block;
+    height: 100%;
+    padding: 25px;
+    text-decoration: none;
+    background: white;
+    color: black;
+    ${({ offset }) => offset ? 'transform: translateY(20px)' : ''};
+`;
+
+const Article = styled.article`
+    display: grid;
+    height: 100%;
+`;
+
+const Title = styled.h1`
+    margin: 0;
+    font-size: 2vw;
+`;
+
+const Description = styled.p`
+    /* font-size: 16px; */
+`;
+
+const RecipeCard = ({ recipe, offset, showSpecs = true }) => {
     return (
-        <Link to={{ pathname: `/recipe/${recipe._id}`, state: { recipe: recipe } }}>
-            <article id={recipe._id}>
-                <h1>{recipe.title}</h1>
-                <p>{recipe.description}</p>
-                <dl>
-                    <dt>Serves:</dt>
-                    <dd>{recipe.serves}</dd>
-
-                    <dt>Cook Time:</dt>
-                    <dd>{recipe.cookTime}</dd>
-                </dl>
-            </article>
-        </Link>
+        <Card to={{ pathname: `/recipe/${recipe._id}`, state: { recipe: recipe } }} offset={offset}>
+            <Article id={recipe._id}>
+                <Title>{recipe.title}</Title>
+                <Description>{recipe.description}</Description>
+                {showSpecs ? (
+                    <RecipeSpecs serves={recipe.serves} cookTime={recipe.cookTime} size={'small'} />
+                ) : false}
+            </Article>
+        </Card>
     );
 };
 
@@ -30,5 +52,7 @@ RecipeCard.propTypes = {
         description: PropTypes.string,
         serves: PropTypes.number,
         cookTime: PropTypes.cookTime
-    })
+    }),
+    offset: PropTypes.bool,
+    showSpecs: PropTypes.bool
 };
